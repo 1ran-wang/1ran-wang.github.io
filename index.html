@@ -23,10 +23,10 @@
     }
     body {
       
-      display: flex;
-      justify-content: center;
+      /* display: flex;
+      justify-content: center;*/
       align-items: center;
-      overflow: hidden;
+      /* overflow: hidden; */
     }
     #time {
       display: flex;
@@ -77,12 +77,22 @@
       align-items: center;
       overflow: hidden;
     }
+    .placeholder{
+      background-image: linear-gradient(rgba(0, 0, 0, 1),
+                       rgba(0, 0, 0, 1));
+      /* height: 100%;
+      width: 100%; */
+    }
     #time > .hidden {
       display: none;
     }
   </style>
 </head>
 <body>
+  <div class="placeholder" style="height: 1800px ;">
+    
+  </div>
+
   <div class="background" >
     <div id="time">
       <div class="hour">
