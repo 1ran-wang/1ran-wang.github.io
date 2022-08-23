@@ -22,10 +22,7 @@
       font-family: "Unica One";
     }
     body {
-      background-image: linear-gradient(rgba(0, 0, 0, 0.6),
-                       rgba(0, 0, 0, 0.7)),url('https://upload.wikimedia.org/wikipedia/zh/8/8a/12306%E8%AE%A2%E7%A5%A8%E9%A1%B5%E9%9D%A2.png');
-      background-repeat: no-repeat;
-      background-size: cover;
+      
       display: flex;
       justify-content: center;
       align-items: center;
@@ -68,8 +65,17 @@
       text-align: center;
     }
     .background{
+      background-image: linear-gradient(rgba(0, 0, 0, 0.6),
+                       rgba(0, 0, 0, 0.7)),url('background.jpg');
+      background-origin:center;
+      background-repeat: no-repeat;
+      background-size:contain;
       height: 100%;
       width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
     }
     #time > .hidden {
       display: none;
@@ -77,18 +83,20 @@
   </style>
 </head>
 <body>
-  <div id="time">
-    <div class="hour">
-      <div class="num"></div>
-      <div class="num"></div>
-    </div>
-    <div class="minute">
-      <div class="num"></div>
-      <div class="num"></div>
-    </div>
-    <div class="second">
-      <div class="num small-num"></div>
-      <div class="num small-num"></div>
+  <div class="background" >
+    <div id="time">
+      <div class="hour">
+        <div class="num"></div>
+        <div class="num"></div>
+      </div>
+      <div class="minute">
+        <div class="num"></div>
+        <div class="num"></div>
+      </div>
+      <div class="second">
+        <div class="num small-num"></div>
+        <div class="num small-num"></div>
+      </div>
     </div>
   </div>
   <script>
@@ -155,6 +163,16 @@
         config.lastTime = now
       }
     }
+
+    /**
+     * 刷新函数
+     * 如果与上次更新的时间之间的间隔超过预设值，或者接近更新时间间隔的整倍数（这个条件是为了更新的时间更加精准）
+     * 则触发时间更新
+     */
+     const refreshBackground = ()=>{
+      window.location.reload();
+    }
+
     /**
      * 元素尺寸重设函数
      * 宽高比只是一个大概的比例，计算出一个基准尺寸，并且乘以缩放系数
@@ -194,6 +212,7 @@
     resize()
     window.addEventListener('load', ()=>{
       window.setInterval(timeDaemon, 10)
+      window.setInterval(refreshBackground, 30000)
     })
     window.addEventListener('resize', resize)
   </script>
